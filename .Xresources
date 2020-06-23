@@ -1,30 +1,35 @@
 URxvt.scrollBar: false
 
-*.foreground:   #d8dee9
-*.background:   #2e3440
+*.foreground:   #F6BBA1
+*.background:   #000000
 *.cursorColor:  #d8dee9
 *.fading: 35
 *.fadeColor: #4c566a
 
-*.color0: #3b4252
-*.color1: #bf616a
-*.color2: #a3be8c
-*.color3: #ebcb8b
-*.color4: #81a1c1
-*.color5: #b48ead
-*.color6: #88c0d0
-*.color7: #e5e9f0
-*.color8: #4c566a
-*.color9: #bf616a
-*.color10: #a3be8c
-*.color11: #ebcb8b
-*.color12: #81a1c1
-*.color13: #b48ead
-*.color14: #8fbcbb
-*.color15: #eceff4
+*.color0: #000000
+*.color1: #D82F19
+*.color2: #81482C
+*.color3: #DF532F
+*.color4: #F6673A
+*.color5: #D76A43
+*.color6: #FA77747
+*.color7: #F6BBA1
+*.color8: #AC8270
+*.color9: #D82F19
+*.color10: #B1492C
+*.color11: #DF532F
+*.color12: #F6673A
+*.color13: #D76A43
+*.color14: #FA7747
+*.color15: #F6BBA1
 
 *.font:xft:iosevka-regular:pixelsize=10
 
 URxvt.letterSpace: 3
 
-URxvt.allow_bold:           false
+URxvt.allow_bold: false
+
+URxvt.cursorBlink: true
+
+URxvt.transparent: true
+URxvt.shading: 30
