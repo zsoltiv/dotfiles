@@ -1,0 +1,163 @@
+# package.use# required by app-editors/neovim-0.4.3::gentoo
+# required by neovim (argument)
+>=dev-lua/lpeg-1.0.1 luajit
+# required by app-editors/neovim-0.4.3::gentoo
+# required by neovim (argument)
+>=dev-lua/luv-1.32.0.0 luajit
+# required by app-editors/neovim-0.4.3::gentoo
+# required by neovim (argument)
+>=dev-lua/mpack-1.0.4 luajit
+# required by sys-boot/os-prober-1.77::gentoo
+# required by os-prober (argument)
+>=sys-boot/grub-2.04-r1 mount
+# required by media-libs/mesa-20.0.8::gentoo[-video_cards_r300,-video_cards_radeon,video_cards_radeonsi,-video_cards_r200,-video_cards_r100,-video_cards_r600]
+# required by media-libs/libepoxy-1.5.4::gentoo[egl]
+# required by x11-base/xorg-server-1.20.8::gentoo[-minimal]
+# required by x11-drivers/xf86-video-ati-19.1.0::gentoo
+# required by x11-base/xorg-drivers-1.20-r2::gentoo[-video_cards_radeon,video_cards_radeonsi]
+>=x11-libs/libdrm-2.4.100 video_cards_radeon
+x11-wm/dwm savedconfig
+x11-misc/dmenu savedconfig
+# required by app-misc/neofetch-6.0.0::gentoo[X]
+# required by neofetch (argument)
+>=www-client/w3m-0.5.3_p20180125 imlib
+www-client/firefox hwaccel openh264 pgo geckodriver hardened lto eme-free -system-av1 -bindist -clang -gmp-autoupdate -screenshot -screencast 
+# required by www-client/firefox-68.10.0::gentoo
+# required by www-client/firefox (argument)
+>=media-libs/libpng-1.6.37 apng
+# required by www-client/firefox-68.10.0::gentoo
+# required by www-client/firefox (argument)
+>=dev-lang/python-2.7.18:2.7 sqlite
+# required by www-client/firefox-68.10.0::gentoo
+# required by www-client/firefox (argument)
+>=dev-lang/python-3.8.3-r1 sqlite
+x11-terms/st savedconfig
+# required by net-print/cups-filters-1.27.4::gentoo[postscript]
+# required by net-print/cups-2.3.3-r1::gentoo
+# required by net-im/discord-bin-0.0.10::gentoo
+# required by discord-bin (argument)
+>=app-text/ghostscript-gpl-9.50 cups
+# required by x11-misc/xdg-utils-1.1.3-r1::gentoo
+# required by net-print/cups-2.3.3-r1::gentoo[X]
+# required by app-text/ghostscript-gpl-9.50::gentoo[cups]
+# required by net-print/cups-filters-1.27.4::gentoo[postscript]
+>=app-text/xmlto-0.0.28-r1 text
+# required by dev-qt/qtcore-5.14.2::gentoo
+# required by dev-qt/qtnetwork-5.14.2-r1::gentoo
+# required by dev-qt/qtsingleapplication-2.6.1_p20171024::gentoo
+# required by net-p2p/qbittorrent-4.2.3::gentoo
+# required by qbittorrent (argument)
+>=dev-libs/libpcre2-10.34 pcre16
+media-video/mpv cplugins cli libmpv lua opengl rubberband vulkan openal luajit vdpau vaapi python3_7
+# required by media-video/mpv-0.32.0-r1::gentoo
+# required by media-video/mpv (argument)
+>=media-video/ffmpeg-4.2.3 vdpau vaapi
+media-sound/cmus aac flac mad opus mp4
+app-arch/libarchive bzip2 zlib lz4 threads
+sys-auth/polkit elogind
+# required by x11-base/xorg-server-1.20.8-r1::gentoo[elogind]
+# required by @selected
+# required by @world (argument)
+>=sys-auth/elogind-243.7 pam
+# required by x11-base/xorg-server-1.20.8-r1::gentoo[elogind]
+# required by @selected
+# required by @world (argument)
+>=sys-auth/pambase-20190402 elogind
+net-p2p/transmission gtk appindicator -qt5
+net-p2p/rtorrent daemon
+app-office/libreoffice googledrive pdfimport branding -odk 
+media-libs/libsdl2 opengl vulkan
+x11-base/xorg-server suid -elogind
+x11-drivers/xf86-video-amdgpu udev
+dev-vcs/git -tk
+x11-themes/gtk-engines-murrine -themes
+app-i18n/ibus -emoji
+# required by dev-util/gyp-20170904022846-r1::gentoo[python_single_target_python2_7]
+# required by app-i18n/mozc-2.23.2815.102::gentoo
+# required by app-i18n/mozc (argument)
+>=dev-python/setuptools-46.4.0-r1 python_targets_python2_7
+# required by dev-python/setuptools-46.4.0-r1::gentoo
+# required by dev-util/gyp-20170904022846-r1::gentoo[python_single_target_python2_7]
+# required by app-i18n/mozc-2.23.2815.102::gentoo
+# required by app-i18n/mozc (argument)
+>=dev-python/certifi-10001 python_targets_python2_7
+media-gfx/sxiv  jpeg png -exif gif savedconfig
+dev-qt/qtgui dbus
+# required by www-client/firefox-68.11.0::gentoo[system-libvpx]
+# required by @selected
+# required by @world (argument)
+>=media-libs/libvpx-1.7.0-r1 postproc
+# required by www-client/firefox-68.11.0::gentoo[system-sqlite]
+# required by @selected
+# required by @world (argument)
+>=dev-db/sqlite-3.32.3-r1 secure-delete
+# required by www-client/firefox-68.11.0::gentoo[pgo]
+# required by @selected
+# required by @world (argument)
+>=x11-base/xorg-server-1.20.8-r1 xvfb
+net-irc/irssi -proxy
+www-client/ungoogled-chromium -clang proprietary-codecs suid
+# required by www-client/ungoogled-chromium-84.0.4147.105_p1::pf4public
+# required by ungoogled-chromium (argument)
+>=dev-libs/libxml2-2.9.9-r3 icu
+# required by www-client/ungoogled-chromium-84.0.4147.105_p1::pf4public[system-harfbuzz]
+# required by ungoogled-chromium (argument)
+>=media-libs/harfbuzz-2.6.7 icu
+# required by www-client/ungoogled-chromium-84.0.4147.105_p1::pf4public[system-libvpx]
+# required by ungoogled-chromium (argument)
+>=media-libs/libvpx-1.7.0-r1 svc
+# required by www-client/ungoogled-chromium-84.0.4147.105_p1::pf4public
+# required by ungoogled-chromium (argument)
+>=sys-libs/zlib-1.2.11-r2 minizip
+# required by www-client/ungoogled-chromium-84.0.4147.105_p1::pf4public
+# required by ungoogled-chromium (argument)
+>=net-libs/nodejs-14.4.0 inspector
+dev-util/scanmem gui
+# required by dev-lang/rust-1.45.2::gentoo
+# required by virtual/rust-1.45.2::gentoo
+# required by gnome-base/librsvg-2.48.8::gentoo
+# required by app-i18n/ibus-1.5.22::gentoo
+# required by app-i18n/ibus-anthy-1.5.11-r1::gentoo[python_single_target_python3_7]
+# required by @selected
+# required by @world (argument)
+>=net-misc/curl-7.71.1-r1 http2
+# required by dev-libs/libappindicator-12.10.0-r301::gentoo
+# required by net-p2p/transmission-3.00-r1::gentoo[gtk,appindicator]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libdbusmenu-16.04.0-r1 gtk3
+# required by net-p2p/deluge-2.0.3-r8::gentoo[python_single_target_python3_7]
+# required by deluge (argument)
+>=net-libs/libtorrent-rasterbar-1.2.8 python
+# required by net-libs/libtorrent-rasterbar-1.2.8::gentoo[python]
+# required by net-p2p/deluge-2.0.3-r8::gentoo[python_single_target_python3_7]
+# required by deluge (argument)
+>=dev-libs/boost-1.73.0 python
+# required by app-office/libreoffice-6.4.5.2::gentoo
+# required by libreoffice (argument)
+>=dev-libs/xmlsec-1.2.30 nss
+media-libs/libsdl opengl
+virtual/wine staging
+media-sound/mpd vorbis
+media-gfx/inkscape jemalloc -postscript
+# required by media-gfx/gimp-2.10.20::gentoo
+# required by gimp (argument)
+>=app-text/poppler-20.08.0 cairo
+# required by media-gfx/gimp-2.10.20::gentoo
+# required by gimp (argument)
+>=media-libs/gegl-0.4.24 cairo
+dev-games/aseprite bundled-libs
+# required by kde-frameworks/kcoreaddons-5.73.0::gentoo
+# required by kde-frameworks/kcrash-5.73.0::gentoo
+# required by kde-plasma/polkit-kde-agent-5.19.4::gentoo
+# required by kde-frameworks/kauth-5.73.0::gentoo[policykit]
+# required by kde-frameworks/kconfigwidgets-5.73.0::gentoo
+# required by kde-frameworks/kiconthemes-5.73.0::gentoo
+# required by kde-frameworks/kxmlgui-5.73.0::gentoo
+# required by media-gfx/krita-4.3.0::gentoo
+# required by krita (argument)
+>=dev-qt/qtcore-5.15.0 icu
+media-libs/devil opengl glut jpeg png sdl
+# required by media-tv/kodi-19.0_alpha1-r1::gentoo[python_single_target_python3_7]
+# required by kodi (argument)
+>=dev-lang/python-3.7.9:3.7 sqlite
