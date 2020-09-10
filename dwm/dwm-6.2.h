@@ -72,6 +72,8 @@ static const char *increasevolumecmd[] = {"pulsemixer", "--change-volume", "+5",
 static const char *decreasevolumecmd[] = {"pulsemixer", "--change-volume", "-5", NULL};
 static const char *musiccmd[] = {"alacritty", "-e", "cmus", NULL};
 static const char *irccmd[] = {"alacritty", "-e", "weechat", NULL};
+static const char *hukbcmd[] = {"setxkbmap", "hu", NULL};
+static const char *uskbcmd[] = {"setxkbmap", "us", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -110,6 +112,9 @@ static Key keys[] = {
 	// volume
 	{MODKEY|ShiftMask, XK_comma, spawn, {.v = decreasevolumecmd}},
 	{MODKEY|ShiftMask, XK_period, spawn, {.v = increasevolumecmd}},
+	// keymaps
+	{MODKEY, XK_F1, spawn, {.v = uskbcmd}},
+	{MODKEY, XK_F2, spawn, {.v = hukbcmd}},
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
