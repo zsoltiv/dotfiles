@@ -24,9 +24,9 @@ HISTSIZE=100
 SAVEHIST=100
 export PATH="$HOME/Piskel-0.14.0-64bits/piskel:$PATH"
 # ibus
-XMODIFIERS=@im=ibus
-GTK_IM_MODULE=ibus
-T_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export GTK_IM_MODULE=xim
+export T_IM_MODULE=xim
 # aliases
 alias ls="ls --color"
 alias assaultcube="/home/zsolti/AssaultCube/assaultcube.sh"

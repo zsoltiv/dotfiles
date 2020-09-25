@@ -3,9 +3,9 @@ redshift -P -O 3500 &
 picom -b &
 dunst &
 
-export GTK_IM_MODULE=ibus
+export GTK_IM_MODULE=xim
 export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
+export QT_IM_MODULE=xim
 ibus-daemon -x &
 
 feh --bg-scale ~/background.jpg &
