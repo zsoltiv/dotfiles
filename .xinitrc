@@ -12,6 +12,6 @@ feh --bg-scale ~/background.jpg &
 
 # Statusbar loop
 while true; do
-   xsetroot -name "  ボリューム: $(pulsemixer --get-volume | awk '{print $1}')% 時間: $(date '+%Y %b %d %a %H:%M:%S')  "
+   xsetroot -name "  $(/home/zsolti/projects/scripts/current-song.sh)ボリューム: $(pulsemixer --get-volume | awk '{print $1}')% 時間: $(date '+%Y %b %d %a %H:%M:%S')  "
    sleep 1s
 done
