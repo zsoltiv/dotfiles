@@ -16,17 +16,16 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 setopt autocd
 autoload -U colors && colors
 # variables
-PS1="%{$bg[blue]%}%{$fg[green]%}%~ %{$fg[yellow]%}-> %{$reset_color%} %{$fg[white]%}"
+PS1="%{$fg[yellow]%}%~ %{$reset_color%}%{$fg[green]%}⮕%{$reset_color%} %{$fg[white]%}"
 EDITOR="nvim"
 TERMINAL="alacritty -e"
 HISTFILE=~/.histfile
 HISTSIZE=100
 SAVEHIST=100
-export PATH="$HOME/Piskel-0.14.0-64bits/piskel:$PATH"
 # ibus
 export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=xim
 export T_IM_MODULE=xim
 # aliases
 alias ls="ls --color"
-alias assaultcube="/home/zsolti/AssaultCube/assaultcube.sh"
+alias myip="ip a s|sed -ne '/127.0.0.1/!{s/^[ \t]*inet[ \t]*\([0-9.]\+\)\/.*$/\1/p}'"
