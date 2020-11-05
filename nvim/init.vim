@@ -14,12 +14,13 @@ Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'whatyouhide/vim-gotham'
 Plug 'mhinz/vim-startify'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
 
 " set colorscheme and transparency
-colorscheme gotham
+colorscheme gruvbox
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -29,6 +30,10 @@ nmap <Tab> :NERDTreeToggle<CR>
 " switching tabs
 nmap <C-l> :tabn<CR>
 nmap <C-h> :tabp<CR>
+nmap <C-n> :call OpenSelectedFile()<CR>
+
+nnoremap o o<Esc>
+nnoremap O O<Esc>
 
 let g:startify_custom_header = [
 \ '       _                 _       _             _ _       ',
@@ -45,9 +50,4 @@ let g:startify_custom_header = [
 \ ]
 
 " functions
-
-" requires dmenu to work
-function! OpenSelectedFile()
-	let l:file = system('ls -a $(pwd) | dmenu -p "what do you want to edit"')
-	execute 'tabnew ' . file
-endfunction
+source ~/.config/nvim/functions.vim
