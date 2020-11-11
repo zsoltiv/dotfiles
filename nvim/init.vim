@@ -18,6 +18,10 @@ Plug 'morhetz/gruvbox'
 
 call plug#end()
 
+" c++ syntax highlighting
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
 
 " set colorscheme and transparency
 colorscheme gruvbox
@@ -32,8 +36,6 @@ nmap <C-l> :tabn<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-n> :call OpenSelectedFile()<CR>
 
-nnoremap o o<Esc>
-nnoremap O O<Esc>
 
 let g:startify_custom_header = [
 \ '       _                 _       _             _ _       ',
