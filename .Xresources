@@ -1,35 +1,30 @@
+Xcursor.theme: Sweet-cursors
+
+URxvt.font: xft:undefined medium:size=8,xft:Mono:size=8
 URxvt.scrollBar: false
-
-*.foreground:   #F6BBA1
-*.background:   #000000
-*.cursorColor:  #d8dee9
-*.fading: 35
-*.fadeColor: #4c566a
-
-*.color0: #000000
-*.color1: #D82F19
-*.color2: #81482C
-*.color3: #DF532F
-*.color4: #F6673A
-*.color5: #D76A43
-*.color6: #FA77747
-*.color7: #F6BBA1
-*.color8: #AC8270
-*.color9: #D82F19
-*.color10: #B1492C
-*.color11: #DF532F
-*.color12: #F6673A
-*.color13: #D76A43
-*.color14: #FA7747
-*.color15: #F6BBA1
-
-*.font:xft:iosevka-regular:pixelsize=10
-
-URxvt.letterSpace: 3
-
-URxvt.allow_bold: false
-
+URxvt.letterSpace: 2
 URxvt.cursorBlink: true
+URxvt.internalBorder: 0
+URxvt.externalBorder: 0
+URxvt.borderLess: false
+URxvt.pointerBlank: true
+URxvt.pointerBlankDelay: 3
 
-URxvt.transparent: true
-URxvt.shading: 30
+! perl scripts
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+! clickable urls
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+URxvt.background: #282828
+URxvt.foreground: #ebdbb2
+
+! gruvbox
+URxvt.color0: #282828
+URxvt.color1: #cc241d
+URxvt.color2: #98971a
+URxvt.color3: #d79921
+URxvt.color4: #458588
+URxvt.color5: #b16286
+URxvt.color6: #689d6a
+URxvt.color7: #a89984
