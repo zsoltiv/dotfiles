@@ -1,6 +1,6 @@
 Xcursor.theme: Sweet-cursors
 
-URxvt.font: xft:undefined medium:size=8,xft:Mono:size=8
+URxvt.font: xft:undefined medium:size=7,xft:Mono:size=7
 URxvt.scrollBar: false
 URxvt.letterSpace: 2
 URxvt.cursorBlink: true
@@ -20,11 +20,19 @@ URxvt.background: #282828
 URxvt.foreground: #ebdbb2
 
 ! gruvbox
-URxvt.color0: #282828
-URxvt.color1: #cc241d
-URxvt.color2: #98971a
-URxvt.color3: #d79921
-URxvt.color4: #458588
-URxvt.color5: #b16286
-URxvt.color6: #689d6a
-URxvt.color7: #a89984
+URxvt.color0:  #282828
+URxvt.color1:  #cc241d
+URxvt.color2:  #98971a
+URxvt.color3:  #d79921
+URxvt.color4:  #458588
+URxvt.color5:  #b16286
+URxvt.color6:  #689d6a
+URxvt.color7:  #a89984
+URxvt.color8:  #fabd2f
+URxvt.color9:  #b8bb26
+URxvt.color10: #83a598
+URxvt.color11: #d65d0e
+URxvt.color12: #fe8019
+URxvt.color13: #fb4934
+URxvt.color14: #8ec07c
+URxvt.color15: #928374
