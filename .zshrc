@@ -16,12 +16,18 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 setopt autocd
 autoload -U colors && colors
 # variables
-PS1="%{$fg[yellow]%}%~ %{$reset_color%}%{$fg[green]%}⮕%{$reset_color%} %{$fg[white]%}"
-EDITOR="nvim"
-TERMINAL="alacritty -e"
+PS1="%{$fg[yellow]%}%~ %{$reset_color%}%{$fg[green]%}$%{$reset_color%} %{$fg[white]%}"
+export EDITOR="nvim"
+export TERMINAL="urxvtc -e"
 HISTFILE=~/.histfile
 HISTSIZE=100
 SAVEHIST=100
+
+# nnn
+export NNN_USE_EDITOR=1
+export NNN_SHOW_HIDDEN=1
+
+export PATH="${PATH}:${HOME}/.local/bin/:$HOME"
 # ibus
 export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=xim
