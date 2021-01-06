@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu>
+	<menu id="root-menu" label="Menu">
+		<item label="Terminal">
+			<action name="Execute">
+				<command>urxvtc</command>
+			</action>
+		</item>
+		<item label="Browser">
+			<action name="Execute">
+				<command>chromium</command>
+			</action>
+		</item>
+		<item label="Flameshot">
+			<action name="Execute">
+				<command>flameshot gui</command>
+			</action>
+		</item>
+		<item label="Thunar">
+			<action name="Execute">
+				<command>thunar</command>
+			</action>
+		</item>
+		<item label="Cmus">
+			<action name="Execute">
+				<command>urxvtc -e cmus</command>
+			</action>
+		</item>
+
+		<item label="Launch programs">
+			<action name="Execute">
+				<command>dmenu_run</command>
+			</action>
+		</item>
+
+		<menu id="Social" label="Social">
+			<item label="Discord">
+				<action name="Execute">
+					<command>discord</command>
+				</action>
+			</item>
+			<item label="Signal">
+				<action name="Execute">
+					<command>signal-desktop</command>
+				</action>
+			</item>
+		</menu>
+
+		<menu id="system-menu" label="System">
+			<item label="Log Out">
+				<action name="Execute">
+					<command>killall X</command>
+				</action>
+			</item>
+			<item label="Shut Down">
+				<action name="Execute">
+					<command>poweroff</command>
+				</action>
+			</item>
+		</menu>
+	</menu>
+</openbox_menu>
