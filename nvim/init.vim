@@ -1,20 +1,30 @@
 syntax on
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
+set smarttab
+set softtabstop=0
 set number
 set cursorline
 set clipboard=unnamedplus
 set showmatch
-
+set noswapfile
+set nomodeline
+set autowrite
+set title
+set numberwidth=1
+set ignorecase
+set wildmode=longest:full,full
+set wildignorecase
+set fileignorecase
 
 call plug#begin('~/.config/nvim/plugged')
-
 Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'whatyouhide/vim-gotham'
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -35,6 +45,9 @@ nmap <Tab> :NERDTreeToggle<CR>
 nmap <C-l> :tabn<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-n> :call OpenSelectedFile()<CR>
+" Enter command-line mode fast
+nnoremap ; :
+vnoremap ; :
 
 
 let g:startify_custom_header = [
