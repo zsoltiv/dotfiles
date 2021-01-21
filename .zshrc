@@ -23,6 +23,9 @@ HISTFILE=~/.histfile
 HISTSIZE=100
 SAVEHIST=100
 
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#928374,bg=#282828,bold,underline"
+
 # nnn
 export NNN_USE_EDITOR=1
 export NNN_SHOW_HIDDEN=1
@@ -35,8 +38,15 @@ export T_IM_MODULE=xim
 # aliases
 alias ls="ls --color"
 alias myip="ip a s|sed -ne '/127.0.0.1/!{s/^[ \t]*inet[ \t]*\([0-9.]\+\)\/.*$/\1/p}'"
+alias yt="mpv --ytdl-format='bestvideo[height<=?1080]+bestaudio/best'"
 
 mem()
 {                                                                                                      
     ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
 }
+
+# MPD daemon start (if no other user instance exists)
+[ ! -s ~/.config/mpd/pid ] && mpd
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi
+
+clear

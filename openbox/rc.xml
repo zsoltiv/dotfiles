@@ -338,7 +338,7 @@
 	</keybind>
 	<keybind key="W-e">
 		<action name="Execute">
-			<command>urxvtc -e nnn -d</command>
+			<command>urxvtc -displayname 'nnn' -e nnn -d</command>
 		</action>
 	</keybind>
 	<keybind key="W-s">
@@ -348,9 +348,14 @@
 	</keybind>
 	<keybind key="W-m">
 		<action name="Execute">
-			<command>urxvtc -e vimpc</command>
+			<command>urxvtc -displayname 'vimpc' -e vimpc </command>
 		</action>
 	</keybind>
+    <keybind key="W-n">
+        <action name="Execute">
+            <command>urxvtc -displayname 'newsboat' -e newsboat</command>
+        </action>
+    </keybind>
 
 	<!-- volume -->
 	<keybind key="W-S-comma">
@@ -363,6 +368,11 @@
 			<command>pulsemixer --change-volume +5</command>
 		</action>
 	</keybind>
+    <keybind key="W-i">
+        <action name="Execute">
+            <command>urxvtc -displayname weechat -e weechat</command>
+        </action>
+    </keybind>
 
 	<!-- window movement -->
 	<keybind key="W-r">
