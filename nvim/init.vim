@@ -5,7 +5,7 @@ set expandtab
 set smarttab
 set softtabstop=0
 set number
-set cursorline
+set relativenumber
 set clipboard=unnamedplus
 set showmatch
 set noswapfile
@@ -17,38 +17,54 @@ set ignorecase
 set wildmode=longest:full,full
 set wildignorecase
 set fileignorecase
+set noswapfile
+set lazyredraw
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'whatyouhide/vim-gotham'
+
 Plug 'mhinz/vim-startify'
 Plug 'morhetz/gruvbox'
-Plug 'rust-lang/rust.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'dylanaraps/wal.vim'
 
 call plug#end()
 
-" c++ syntax highlighting
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
+" lsp settings
+let g:lsp_settings = {
+\ 'clangd': {'cmd' : ['clangd']}
+\}
+" tab completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" save using shift+w
+nnoremap <S-w> :w<CR>
 
-" set colorscheme and transparency
-colorscheme gruvbox
-autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
+" set colorscheme
+colorscheme wal
+set cursorline
+hi CursorLine cterm=NONE ctermbg=black ctermfg=magenta
+hi StatusLine ctermbg=black ctermfg=magenta
+hi Pmenu ctermbg=red ctermfg=black
+hi PmenuSel ctermbg=magenta ctermfg=black
+hi TabLine ctermbg=black ctermfg=white
+hi TabLineFill ctermbg=black ctermfg=black cterm=bold term=bold
+hi TabLineSel ctermbg=black ctermfg=red
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-
-nmap <Tab> :NERDTreeToggle<CR>
 " switching tabs
-nmap <C-l> :tabn<CR>
-nmap <C-h> :tabp<CR>
-nmap <C-n> :call OpenSelectedFile()<CR>
 " Enter command-line mode fast
 nnoremap ; :
 vnoremap ; :
 
+" file explorer configuration
+nmap <Tab> :Lexplore<CR>
+let g:netrw_liststyle = 3 " use third view
+let g:netrw_banner = 0 " hide banner
+let g:netrw_browse_split = 3 " open files in new tab
+let g:netrw_winsize = 20 " occupy 20% of the screen
 
 let g:startify_custom_header = [
 \ '       _                 _       _             _ _       ',
