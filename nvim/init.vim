@@ -29,8 +29,12 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'dylanaraps/wal.vim'
+Plug 'https://gitlab.com/zsoltiv/snippet2code.git'
 
 call plug#end()
+
+" enable filetype plugins
+filetype plugin on
 
 " lsp settings
 let g:lsp_settings = {
@@ -80,5 +84,23 @@ let g:startify_custom_header = [
 \ ' \___\___/ \__,_|\___|                                   ',
 \ ]
 
-" functions
-source ~/.config/nvim/functions.vim
+" snippet2code settings
+let g:CodeSnippets = {
+\ 'html': [
+\   '<!DOCTYPE html>',
+\   '<html lang="en">',
+\   '<head>',
+\   '    <meta charset="UTF-8">',
+\   '    <meta name="viewport" content="width=device-width, initial-scale=1.0">',
+\   '    <title>Document</title>',
+\   '</head>',
+\   '<body>',
+\   '',
+\   '</body>',
+\   '</html>',
+\ ],
+\}
+
+nmap <S-e> :SnippetToCode<CR>
+
+nnoremap <C-o> :lua require 'open_with'.OpenWith()<CR>
