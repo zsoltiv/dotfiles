@@ -6,20 +6,20 @@ const unsigned int gappx            = 10;	/* sets gap size, requires gaps and fu
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=9" };
-static const char dmenufont[]       = "monospace:size=9";
-static const char col_gray1[]       = "#0a0f14";
+static const char *fonts[]          = { "undefined medium:size=11" };
+static const char dmenufont[]       = "undefined medium:size=9";
+static const char col_gray1[]       = "#05141B";
 static const char col_gray2[]       = "#bd93f9";
-static const char col_gray3[]       = "#edb54b";
-static const char col_gray4[]       = "#c33027";
-static const char col_cyan[]        = "#26a98b";
+static const char col_gray3[]       = "#B46484";
+static const char col_gray4[]       = "#282828";
+static const char col_cyan[]        = "#CC6B8E";
 // custom colors
-static const char col_border_norm[] = "#edb54b";
+static const char col_border_norm[] = "#99cc99";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_border_norm },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan },
+	[SchemeSel]  = { col_gray4, col_gray3,  col_cyan },
 };
 
 /* tagging */
@@ -62,19 +62,19 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 //custom
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "urxvtc", NULL };
 static const char *browsercmd[] = {"chromium", NULL};
-static const char *filemgrcmd[] = {"alacritty", "-e", "nnn", NULL};
-static const char *htopcmd[] = {"alacritty", "-e", "htop", NULL};
+static const char *filemgrcmd[] = {"urxvtc", "-e", "nnn", NULL};
 static const char *discordcmd[] = {"discord", NULL};
 static const char *screenshotcmd[] = {"flameshot", "gui", NULL};
-static const char *newscmd[] = {"alacritty", "-e", "newsboat", NULL};
+static const char *newscmd[] = {"urxvtc", "-e", "newsboat", NULL};
 static const char *increasevolumecmd[] = {"pulsemixer", "--change-volume", "+5", NULL};
 static const char *decreasevolumecmd[] = {"pulsemixer", "--change-volume", "-5", NULL};
-static const char *musiccmd[] = {"alacritty", "-e", "cmus", NULL};
-static const char *irccmd[] = {"alacritty", "-e", "weechat", NULL};
-static const char *hukbcmd[] = {"setxkbmap", "hu", NULL};
-static const char *uskbcmd[] = {"setxkbmap", "us", NULL};
+static const char *musiccmd[] = {"urxvtc", "-e", "vimpc", NULL};
+static const char *irccmd[] = {"urxvtc", "-e", "weechat", NULL};
+static const char *torrentcmd[] = {"deluge", NULL};
+/* custom script, see my scripts repo on gitlab */
+static const char *layoutcmd[] = {"cycle-layout", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -85,8 +85,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_v,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_c,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.02} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.02} },
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.01} },
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.01} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
@@ -94,7 +94,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	//{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -104,18 +104,17 @@ static Key keys[] = {
 	// custom
 	{MODKEY, XK_w, spawn, {.v = browsercmd}},
 	{MODKEY, XK_e, spawn, {.v = filemgrcmd}},
-	{MODKEY, XK_t, spawn, {.v = htopcmd}},
 	{MODKEY, XK_y, spawn, {.v = discordcmd}},
 	{MODKEY, XK_s, spawn, {.v = screenshotcmd}},
 	{MODKEY, XK_n, spawn, {.v = newscmd}},
 	{MODKEY, XK_m, spawn, {.v = musiccmd}},
-	{MODKEY, XK_u, spawn, {.v = irccmd}},
+	{MODKEY, XK_i, spawn, {.v = irccmd}},
+	{MODKEY, XK_u, spawn, {.v = torrentcmd}},
 	// volume
 	{MODKEY|ShiftMask, XK_comma, spawn, {.v = decreasevolumecmd}},
 	{MODKEY|ShiftMask, XK_period, spawn, {.v = increasevolumecmd}},
 	// keymaps
-	{MODKEY, XK_F1, spawn, {.v = uskbcmd}},
-	{MODKEY, XK_F2, spawn, {.v = hukbcmd}},
+	{ShiftMask|MODKEY, XK_space, spawn, {.v = layoutcmd}},
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
