@@ -1,0 +1,42 @@
+Only in dwm-6.2-patched: config.h
+Only in dwm-6.2-patched: drw.o
+Only in dwm-6.2-patched: dwm
+diff -up dwm-6.2/dwm.c dwm-6.2-patched/dwm.c
+--- dwm-6.2/dwm.c	2019-02-02 13:55:28.000000000 +0100
++++ dwm-6.2-patched/dwm.c	2021-05-03 16:21:31.571201407 +0200
+@@ -233,6 +233,7 @@ static int xerror(Display *dpy, XErrorEv
+ static int xerrordummy(Display *dpy, XErrorEvent *ee);
+ static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void zoom(const Arg *arg);
++static void spawnprograms();
+ 
+ /* variables */
+ static const char broken[] = "broken";
+@@ -2124,6 +2125,17 @@ zoom(const Arg *arg)
+ 	pop(c);
+ }
+ 
++void
++spawnprograms()
++{
++    /* iterate through startup_programs and spawn each program */
++    for(int i = 0; i < sizeof(startup_programs) / sizeof(char **); i++)
++    {
++        Arg prog = {.v = startup_programs[i]};
++        spawn(&prog);
++    }
++}
++
+ int
+ main(int argc, char *argv[])
+ {
+@@ -2142,6 +2154,7 @@ main(int argc, char *argv[])
+ 		die("pledge");
+ #endif /* __OpenBSD__ */
+ 	scan();
++    spawnprograms();
+ 	run();
+ 	cleanup();
+ 	XCloseDisplay(dpy);
+Only in dwm-6.2-patched: dwm.o
+Only in dwm-6.2-patched: util.o
