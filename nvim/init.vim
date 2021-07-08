@@ -19,6 +19,10 @@ set wildignorecase
 set fileignorecase
 set noswapfile
 set lazyredraw
+set mouse=a
+
+" disable folding because it's annoying
+let g:lsp_fold_enabled = 0
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -28,8 +32,12 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'dylanaraps/wal.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'https://gitlab.com/zsoltiv/snippet2code.git'
+Plug 'itchyny/lightline.vim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'alaviss/nim.nvim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -40,6 +48,9 @@ filetype plugin on
 let g:lsp_settings = {
 \ 'clangd': {'cmd' : ['clangd']}
 \}
+set foldmethod=expr
+    \ foldexpr=lsp#ui#vim#folding#foldexpr()
+    \ foldtext=lsp#ui#vim#folding#foldtext()
 " tab completion
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -48,15 +59,8 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 nnoremap <S-w> :w<CR>
 
 " set colorscheme
-colorscheme wal
+colorscheme gruvbox
 set cursorline
-hi CursorLine cterm=NONE ctermbg=black ctermfg=magenta
-hi StatusLine ctermbg=black ctermfg=magenta
-hi Pmenu ctermbg=red ctermfg=black
-hi PmenuSel ctermbg=magenta ctermfg=black
-hi TabLine ctermbg=black ctermfg=white
-hi TabLineFill ctermbg=black ctermfg=black cterm=bold term=bold
-hi TabLineSel ctermbg=black ctermfg=red
 
 " switching tabs
 " Enter command-line mode fast
@@ -99,8 +103,42 @@ let g:CodeSnippets = {
 \   '</body>',
 \   '</html>',
 \ ],
+\ 'mainc' : [
+\   '#include <stdint.h>',
+\   '',
+\   'int32_t main(int32_t argc, char **argv)',
+\   '{',
+\   '   return 0;',
+\   '}',
+\ ],
+\ 'makefile': [
+\ 'CC=',
+\ 'CFLAGS=',
+\ 'LDFLAGS=',
+\ '',
+\ 'default: clean program',
+\ '',
+\ 'clean:',
+\ '    rm -rf ./*.o ./program',
+\ '',
+\ 'OBJS=',
+\ '',
+\ 'program: $(OBJS)',
+\ '    $(CC) $(OBJS) $(CFLAGS) $(LDFLAGS) -o program',
+\ ],
 \}
 
-nmap <S-e> :SnippetToCode<CR>
+nmap <C-e> :SnippetToCode<CR>
 
-nnoremap <C-o> :lua require 'open_with'.OpenWith()<CR>
+let g:OpenWithPrograms = {
+\    'html': 'librewolf',
+\    'tex': 'pdflatex',
+\}
+nnoremap <C-o> :lua require 'open_with'.OpenWithProgram()<CR>
+
+" nim.nvim autocompletion
+au User asyncomplete_setup call asyncomplete#register_source({
+    \ 'name': 'nim',
+    \ 'whitelist': ['nim'],
+    \ 'completor': {opt, ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> asyncomplete#complete(opt['name'], ctx, start, candidates)})}
+    \ })
