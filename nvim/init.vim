@@ -23,6 +23,8 @@ set mouse=a
 
 " disable folding because it's annoying
 let g:lsp_fold_enabled = 0
+" set leader key
+let mapleader = ' '
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -131,7 +133,7 @@ let g:CodeSnippets = {
 nmap <C-e> :SnippetToCode<CR>
 
 let g:OpenWithPrograms = {
-\    'html': 'librewolf',
+\    'html': 'chromium',
 \    'tex': 'pdflatex',
 \}
 nnoremap <C-o> :lua require 'open_with'.OpenWithProgram()<CR>
