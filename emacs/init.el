@@ -7,7 +7,8 @@
    '("d14f3df28603e9517eb8fb7518b662d653b25b26e83bd8e129acea042b774298" default))
  '(initial-buffer-choice t)
  '(initial-scratch-message "")
- '(package-selected-packages '(magit company lsp-mode gruvbox-theme evil)))
+ '(package-selected-packages
+   '(ace-window dired-x magit company lsp-mode gruvbox-theme evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,9 +34,12 @@
 (install-package 'lsp-mode)
 (install-package 'company)
 (install-package 'magit)
+(install-package 'ace-window)
 
 (require 'evil)
 (require 'lsp-mode)
+
+(require 'cl)
 
 
 ;; functions and macros
@@ -54,10 +58,42 @@
 
 (defmacro run-every-n-minutes (n exp)
   "Evaluate EXP every N minutes"
-  (interactive)
 
   `(run-with-timer 0 (* ,n 60) ,exp))
 
+(defcustom info-window-regex "\\*\\([Hh]elp|Man|Apropos\\)\\*"
+  "Regular expression for Help, Man, Apropos buffers"
+  :type '(string)
+  :group 'my-custom)
+(defun display-buffer-reuse-info (buffer alist)
+  (let ((window (car (remove-if-not
+		      (lambda (w)
+			(string-match info-window-regex
+				      (buffer-name (window-buffer w))))
+		      (window-list)))))
+    (if (and window (window-live-p window))
+	(window--display-buffer buffer window 'reuse alist))))
+
+(defun left-side-dired ()
+  "Open dired on the left with buffer name *Dired*"
+  (interactive)
+
+  (let ((dired-left-name "*Dired-Left*"))
+    (if (not (get-buffer-window dired-left-name))
+      (progn
+	(let ((dir (if (eq (vc-root-dir) nil)
+		       (dired-noselect default-directory)
+		     (dired-noselect (vc-root-dir)))))
+	  (display-buffer-in-side-window
+	   dir `((side . left)
+		 (slot . 0)
+		 (window-width . 0.2)
+	         (window-parameters . ((no-other-window . t)
+				       (no-delete-other-windows . t)
+				       (mode-line-format . (" " "%b"))))))
+	 (with-current-buffer dir
+	   (rename-buffer dired-left-name))))
+      (select-window (get-buffer-window dired-left-name)))))
 
 (defun custom-welcome-screen ()
   "Custom welcome screen"
@@ -104,11 +140,24 @@
       ; go to the beginning of the buffer
       (goto-char 0))))
 
+(defun find-notes-file ()
+  (interactive)
+  (find-file "~/notes.org"))
+
+(defun open-in-program ()
+  "Opens BUFFER in a program based on its file extension"
+  (interactive)
+
+  (let* ((extension (file-name-extension (buffer-file-name (current-buffer))))
+	 (command (cond ((string= extension "html") "chromium"))))
+    (async-shell-command (concat command " " (buffer-file-name (current-buffer))))))
+
 
 ;; aesthetic settings
 (set-face-attribute 'default nil
 		    :font "undefined medium"
 		    :height 80)
+(setq default-frame-alist '((font . "undefined medium")))
 (load-theme 'gruvbox t)
 (add-hook 'emacs-startup-hook 'custom-welcome-screen)
 
@@ -129,11 +178,23 @@
 			    (unless (derived-mode-p 'emacs-lisp-mode)
 			      (lsp))))
 (add-hook 'after-init-hook 'global-company-mode) ; autocomplete
+ ; highlight current line
+(add-hook 'text-mode-hook 'hl-line-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
 ; hide toolbar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 ; only spaces for indentation
 (setq indent-tabs-mode nil)
+; window management
+(setq pop-up-windows t)           ; don't spawn new windows
+(setq even-window-heights nil)      ; don't resize
+(setq display-buffer-reuse-frames t)
+(setq display-buffer-alist
+      '((info-window-regex
+	 (display-buffer-reuse-window display-buffer-at-bottom)
+         (window-height . fit-window-to-buffer)
+         (window-width . fit-window-to-buffer-horizontally))))
 ; smooth scrolling
 (setq mouse-wheel-follow-mouse 't)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
@@ -142,14 +203,32 @@
 (setq clean-buffer-list-kill-never-buffer-names '("init.el"))
 (setq clean-buffer-list-kill-regexps '(".+\\.c\\(pp\\)?")) ; C/C++
 (setq clean-buffer-list-delay-special 3600) ; every hour
+; dired-x
+(add-hook 'dired-load-hook (lambda ()
+			     (load "dired-x")))
 ; tasks
 (run-every-n-minutes 30 'clean-buffer-list)
-
+; org mode
+(setq org-export-in-background nil)
+; html5
+(setq org-html-doctype "xhtml5")
+(setq org-html-html5-fancy t)
 
 ;; keybindings
+; zoom with mouse
+(global-set-key [C-mouse-4] 'text-scale-increase)
+(global-set-key [C-mouse-5] 'text-scale-decrease)
+(global-set-key (kbd "C-M-c") 'undefined)
+(global-set-key (kbd "C-M-v") 'undefined)
+(global-set-key (kbd "C-M-c") 'kill-ring-save)
+(global-set-key (kbd "C-M-v") 'yank)
+; evil stuff
 (eval-after-load 'evil
   '(progn
-     (evil-global-set-key 'normal (kbd "TAB") 'dired-jump)
-     (evil-global-set-key 'normal (kbd ":") 'evil-ex)
-     (evil-global-set-key 'normal (kbd ";") 'evil-ex)))
-;(evil-global-set-key 'normal (kbd ";") )
+     (evil-global-set-key 'normal (kbd "TAB") 'left-side-dired)
+     (evil-global-set-key 'normal (kbd ":") 'ace-window)
+     (evil-global-set-key 'normal (kbd ";") 'evil-ex)
+     (evil-global-set-key 'normal (kbd "C-o") 'open-in-program)))
+(evil-select-search-module 'evil-search-module 'evil-search) ; use vim-like search
+; disable dired warning for 'o' key
+(put 'dired-find-alternate-file 'disabled nil)
