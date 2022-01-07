@@ -8,7 +8,7 @@
  '(initial-buffer-choice t)
  '(initial-scratch-message "")
  '(package-selected-packages
-   '(ace-window dired-x magit company lsp-mode gruvbox-theme evil)))
+   '(yasnippet ace-window dired-x magit company lsp-mode gruvbox-theme evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -35,9 +35,13 @@
 (install-package 'company)
 (install-package 'magit)
 (install-package 'ace-window)
+(install-package 'yasnippet)
 
 (require 'evil)
 (require 'lsp-mode)
+(require 'autoinsert)
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/go-mode")
+(require 'go-mode)
 
 (require 'cl)
 
@@ -77,7 +81,6 @@
 (defun left-side-dired ()
   "Open dired on the left with buffer name *Dired*"
   (interactive)
-
   (let ((dired-left-name "*Dired-Left*"))
     (if (not (get-buffer-window dired-left-name))
       (progn
@@ -95,51 +98,6 @@
 	   (rename-buffer dired-left-name))))
       (select-window (get-buffer-window dired-left-name)))))
 
-(defun custom-welcome-screen ()
-  "Custom welcome screen"
-  (interactive)
-
-  (let* ((welcome-buffer (get-buffer-create "*Welcome buffer*"))
-	 (ascii-text     '("        _                  __        __            ___     \n"
-			   " _   __(_)______  ______ _/ /  _____/ /___  ______/ (_)___ \n"
-			   "| | / / / ___/ / / / __ `/ /  / ___/ __/ / / / __  / / __ \\\n"
-			   "| |/ / (__  ) /_/ / /_/ / /  (__  ) /_/ /_/ / /_/ / / /_/ /\n"
-			   "|___/_/____/\\__,_/\\__,_/_/  /____/\\__/\\__,_/\\__,_/_/\\____/ \n"
-			   "                  __   \n"
-	                   "  _________  ____/ /__ \n"
-			   " / ___/ __ \\/ __  / _ \\\n"
-			   "/ /__/ /_/ / /_/ /  __/\n"
-			   "\\___/\\____/\\__,_/\\___/ \n"))
-	 ; the longest line in ascii-text
-	 (length         (- (apply 'max (mapcar 'length ascii-text)) 1))
-         (width          (window-body-width nil))
-         (height         (- (window-body-height nil) 1))
-	 (padding-left   (- (/ width 2) (/ length 2)))
-         (padding-top    (- (/ height 2) 1))
-         (padding-bottom (- height (/ height 2) 3)))
-
-    (with-current-buffer welcome-buffer
-      (erase-buffer)
-      (if (one-window-p)
-          (setq mode-line-format nil))
-      (setq cursor-type nil)
-      (setq vertical-scroll-bar nil)
-      (setq horizontal-scroll-bar nil)
-      (setq fill-column width)
-
-      ; padding
-      (insert-char ?\n padding-top)
-
-      (dolist (line ascii-text)
-	(insert-char ?  padding-left)
-	(insert line))
-
-      (insert-char ?\n padding-bottom)
-
-      (switch-to-buffer welcome-buffer)
-      ; go to the beginning of the buffer
-      (goto-char 0))))
-
 (defun find-notes-file ()
   (interactive)
   (find-file "~/notes.org"))
@@ -147,44 +105,64 @@
 (defun open-in-program ()
   "Opens BUFFER in a program based on its file extension"
   (interactive)
-
   (let* ((extension (file-name-extension (buffer-file-name (current-buffer))))
 	 (command (cond ((string= extension "html") "chromium"))))
-    (async-shell-command (concat command " " (buffer-file-name (current-buffer))))))
+    (start-process "Emacs external process" nil command (buffer-file-name (current-buffer)))))
 
+(defmacro insert-line (&rest args)
+  (when args
+    `(progn
+       (insert  ,@args)
+       (newline))))
+
+(defun autoinsert-yas-expand ()
+  "Replace text in template"
+  (yas-expand-snippet (buffer-string) (point-min) (point-max)))
 
 ;; aesthetic settings
 (set-face-attribute 'default nil
 		    :font "undefined medium"
 		    :height 80)
-(setq default-frame-alist '((font . "undefined medium")))
+(setq default-frame-alist '((font . "undefined medium")
+                            (font . "JackeyFont")))
 (load-theme 'gruvbox t)
-(add-hook 'emacs-startup-hook 'custom-welcome-screen)
-
 
 ;; rest of the config
 (evil-mode 1) ; use evil mode
+(yas-global-mode 1) ; use yas
 ; relative line numbers
 (add-hook 'text-mode-hook 'display-relative-line-numbers-mode)
 (add-hook 'prog-mode-hook 'display-relative-line-numbers-mode)
 ; lsp
 (setq lsp-clangd-binary-path "/usr/lib/llvm/12/bin/clangd")
-(setq lsp-headerline-breadcrumb-enable nil)
-(setq lsp-ui-sideline-enable nil)
-(setq lsp-completion-show-detail nil)
-
+(setq lsp-headerline-breadcrumb-enable t)
+(setq lsp-ui-sideline-enable t)
+(setq lsp-completion-show-detail t)
 ; emable lsp in all programming modes except emacs-lisp-mode
 (add-hook 'prog-mode-hook (lambda ()
 			    (unless (derived-mode-p 'emacs-lisp-mode)
 			      (lsp))))
 (add-hook 'after-init-hook 'global-company-mode) ; autocomplete
+(setq company-idle-delay 0)
+(setq company-dabbrev-downcase 0)
+(setq company-dabbrev-other-buffers t)
+(setq company-selection-wrap-around t)
+(setq company-show-numbers t)
+(setq company-tooltip-align-annotations t)
  ; highlight current line
 (add-hook 'text-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'hl-line-mode)
+; enable yas
+; C/++ style
+(setq c-default-style "k&r")
+(setq-default c-basic-offset 4)
 ; hide toolbar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 ; only spaces for indentation
+(add-hook 'prog-mode-hook (lambda ()
+			    (setq indent-tabs-mode nil)
+			    (setq tab-width 4)))
 (setq indent-tabs-mode nil)
 ; window management
 (setq pop-up-windows t)           ; don't spawn new windows
@@ -206,13 +184,72 @@
 ; dired-x
 (add-hook 'dired-load-hook (lambda ()
 			     (load "dired-x")))
+; backup files
+(setq make-backup-files nil)
+; new file templates
+(eval-after-load 'autoinsert
+  '(progn
+     (auto-insert-mode)
+     (setq auto-insert-directory "~/.config/emacs/insert/")
+     (setq auto-insert t)
+     (define-auto-insert "\\.h$" ["template.h" autoinsert-yas-expand])
+     (define-auto-insert "\\.sh$" ["template.sh" autoinsert-yas-expand])
+     (define-auto-insert "^Makefile$" ["template.mk" autoinsert-yas-expand])
+     (define-auto-insert "\\.html$" ["template.html" autoinsert-yas-expand])))
 ; tasks
 (run-every-n-minutes 30 'clean-buffer-list)
 ; org mode
 (setq org-export-in-background nil)
 ; html5
-(setq org-html-doctype "xhtml5")
+(setq org-html-doctype "html5")
 (setq org-html-html5-fancy t)
+(setq org-html-validation-link "")
+; don't insert blank line before list entry
+(setq org-blank-before-new-entry '((heading . auto)
+                                   (plain-list-item . nil)))
+; org publish stuff
+(require 'ox-publish)
+(setq org-publish-project-alist
+      `(("pages"
+         :base-directory "~/blog/org/"
+         :base-extension "org"
+         :recursive: nil
+         :publishing-directory "~/blog/html/"
+         :publishing-function org-html-publish-to-html
+	     :html-head "<link rel=\"stylesheet\" href=\"/css/style.css\" type=\"text/css\"/>"
+         ; options
+         :html-head-include-default-style nil
+         :html-head-include-scripts nil)
+        ("posts"
+	     :base-directory "~/blog/org/posts/"
+	     :base-extension "org"
+	     :recursive t
+         ; include css
+	     :html-head "<link rel=\"stylesheet\" href=\"/css/style.css\" type=\"text/css\"/>"
+	     :publishing-directory "~/blog/html/posts/"
+	     :publishing-function org-html-publish-to-html
+         ; sitemap
+         :auto-sitemap t
+         :sitemap-title "Posts"
+         :sitemap-filename "posts.org"
+         ; newest to oldest
+         :sitemap-sort-files anti-chronologically
+         ; options
+         :html-head-include-default-style nil
+         :html-head-include-scripts nil)
+	    ("css"
+	     :base-directory "~/blog/org/css"
+	     :base-extension "css"
+	     :recursive t
+	     :publishing-directory "~/blog/html/"
+	     :publishing-function org-publish-attachment)
+	    ("static"
+	     :base-directory "~/blog/org/"
+	     :base-extension "css\\|txt\\|jpg\\|gif\\|png\\|webp"
+	     :recursive t
+	     :publishing-directory "~/blog/html/"
+	     :publishing-function org-publish-attachment)
+	    ("blog" :components ("posts" "pages" "static" "css"))))
 
 ;; keybindings
 ; zoom with mouse
@@ -222,11 +259,14 @@
 (global-set-key (kbd "C-M-v") 'undefined)
 (global-set-key (kbd "C-M-c") 'kill-ring-save)
 (global-set-key (kbd "C-M-v") 'yank)
+(global-set-key (kbd "C-;") 'ace-window)
+; yas stuff
+(define-key yas-minor-mode-map [(tab)] nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
 ; evil stuff
 (eval-after-load 'evil
   '(progn
      (evil-global-set-key 'normal (kbd "TAB") 'left-side-dired)
-     (evil-global-set-key 'normal (kbd ":") 'ace-window)
      (evil-global-set-key 'normal (kbd ";") 'evil-ex)
      (evil-global-set-key 'normal (kbd "C-o") 'open-in-program)))
 (evil-select-search-module 'evil-search-module 'evil-search) ; use vim-like search

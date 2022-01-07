@@ -20,6 +20,7 @@ set fileignorecase
 set noswapfile
 set lazyredraw
 set mouse=a
+set nofoldenable
 
 " disable folding because it's annoying
 let g:lsp_fold_enabled = 0
@@ -40,6 +41,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'alaviss/nim.nvim'
 Plug 'morhetz/gruvbox'
+Plug 'tibabit/vim-templates'
 
 call plug#end()
 
@@ -144,3 +146,5 @@ au User asyncomplete_setup call asyncomplete#register_source({
     \ 'whitelist': ['nim'],
     \ 'completor': {opt, ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> asyncomplete#complete(opt['name'], ctx, start, candidates)})}
     \ })
+
+autocmd BufWritePost $HOME/.Xresources !xrdb -merge <afile>
