@@ -9,3 +9,6 @@ for path in $paths; do
     cp "$CONFIG_HOME/$path" "./$path" &> /dev/null &&
         echo "copying $CONFIG_HOME/$path to ./$path"
 done
+
+git add .
+git commit
