@@ -1,3 +1,6 @@
+## Steam
+games-util/game-device-udev-rules elogind
+
 app-arch/bzip2 abi_x86_32
 dev-db/sqlite abi_x86_32
 dev-libs/atk abi_x86_32
@@ -81,8 +84,7 @@ x11-proto/glproto abi_x86_32
 x11-proto/inputproto abi_x86_32
 x11-proto/kbproto abi_x86_32
 x11-proto/presentproto abi_x86_32
-# move x11-proto/xcb-proto x11-base/xcb-proto
-x11-base/xcb-proto abi_x86_32
+x11-proto/xcb-proto abi_x86_32
 x11-proto/xextproto abi_x86_32
 x11-proto/xf86bigfontproto abi_x86_32
 x11-proto/xf86driproto abi_x86_32
@@ -92,3 +94,291 @@ x11-proto/xproto abi_x86_32
 # If not using systemd add this, otherwise chances are the libudev/udev will
 # be pulled as dependencies and eudev removed from your system.
 sys-fs/eudev abi_x86_32
+# required by x11-libs/libxcb-1.14::gentoo
+# required by media-sound/pulseaudio-13.0-r1::gentoo[X]
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=x11-base/xcb-proto-1.14.1 abi_x86_32
+# required by net-misc/curl-7.77.0-r1::gentoo[http2]
+# required by dev-lang/rust-1.52.1::gentoo
+# required by virtual/rust-1.52.1::gentoo
+# required by gnome-base/librsvg-2.50.6::gentoo
+# required by x11-libs/gtk+-2.24.33::gentoo
+# required by media-libs/libcanberra-0.30-r5::gentoo[gtk]
+# required by media-sound/pavucontrol-4.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=net-libs/nghttp2-1.41.0-r2 abi_x86_32
+# required by media-libs/mesa-21.0.3::gentoo
+# required by virtual/opengl-7.0-r2::gentoo
+# required by x11-misc/picom-8.2-r2::gentoo[opengl]
+# required by @selected
+# required by @world (argument)
+>=media-libs/libglvnd-1.3.3 abi_x86_32
+# required by media-libs/mesa-21.0.3::gentoo[zstd]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by x11-misc/picom-8.2-r2::gentoo[opengl]
+# required by @selected
+# required by @world (argument)
+>=app-arch/zstd-1.4.9 abi_x86_32
+# required by media-libs/openal-1.21.1-r1::gentoo[pulseaudio]
+# required by net-im/telegram-desktop-2.7.4-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-sound/pulseaudio-13.0-r1 abi_x86_32
+# required by media-sound/pulseaudio-13.0-r1::gentoo
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=media-libs/libsndfile-1.0.31 abi_x86_32
+# required by media-sound/pulseaudio-13.0-r1::gentoo[X]
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=x11-libs/libSM-1.2.3-r1 abi_x86_32
+# required by x11-libs/libSM-1.2.3-r1::gentoo
+# required by media-sound/pulseaudio-13.0-r1::gentoo[X]
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=x11-libs/libICE-1.0.10 abi_x86_32
+# required by media-sound/pulseaudio-13.0-r1::gentoo[X]
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=x11-libs/libXtst-1.2.3-r2 abi_x86_32
+# required by media-sound/pulseaudio-13.0-r1::gentoo[caps]
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=sys-libs/libcap-2.49 abi_x86_32
+# required by media-sound/pulseaudio-13.0-r1::gentoo[asyncns]
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=net-libs/libasyncns-0.8-r4 abi_x86_32
+# required by media-sound/pulseaudio-13.0-r1::gentoo[alsa-plugin,alsa]
+# required by media-libs/openal-1.21.1-r1::gentoo[pulseaudio]
+# required by net-im/telegram-desktop-2.7.4-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-plugins/alsa-plugins-1.2.2 abi_x86_32
+# required by media-plugins/alsa-plugins-1.2.2::gentoo
+# required by media-sound/pulseaudio-13.0-r1::gentoo[alsa-plugin,alsa]
+# required by media-libs/openal-1.21.1-r1::gentoo[pulseaudio]
+# required by net-im/telegram-desktop-2.7.4-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/alsa-lib-1.2.4 abi_x86_32
+# required by media-libs/libsndfile-1.0.31::gentoo[-minimal]
+# required by media-sound/pulseaudio-13.0-r1::gentoo
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=media-libs/flac-1.3.3-r1 abi_x86_32
+# required by media-libs/libvorbis-1.3.7::gentoo
+# required by media-libs/libsndfile-1.0.31::gentoo[-minimal]
+# required by media-sound/pulseaudio-13.0-r1::gentoo
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=media-libs/libogg-1.3.4-r1 abi_x86_32
+# required by media-libs/libsndfile-1.0.31::gentoo[-minimal]
+# required by media-sound/pulseaudio-13.0-r1::gentoo
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=media-libs/libvorbis-1.3.7 abi_x86_32
+# required by media-libs/libsndfile-1.0.31::gentoo[-minimal]
+# required by media-sound/pulseaudio-13.0-r1::gentoo
+# required by media-plugins/alsa-plugins-1.2.2::gentoo[pulseaudio]
+>=media-libs/opus-1.3.1-r2 abi_x86_32
+# required by sys-devel/gettext-0.21-r1::gentoo
+# required by dev-libs/elfutils-0.184::gentoo[nls]
+# required by virtual/libelf-3::gentoo
+# required by media-libs/mesa-21.0.3::gentoo[gallium,video_cards_radeonsi,-video_cards_r600,-opencl,-video_cards_radeon,llvm]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by x11-misc/picom-8.2-r2::gentoo[opengl]
+# required by @selected
+# required by @world (argument)
+>=virtual/libintl-0-r2 abi_x86_32
+# required by media-libs/mesa-21.0.3::gentoo[gallium,video_cards_radeonsi,-video_cards_r600,-opencl,-video_cards_radeon,llvm]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by x11-misc/picom-8.2-r2::gentoo[opengl]
+# required by @selected
+# required by @world (argument)
+>=virtual/libelf-3 abi_x86_32
+# required by virtual/libelf-3::gentoo
+# required by media-libs/mesa-21.0.3::gentoo[gallium,video_cards_radeonsi,-video_cards_r600,-opencl,-video_cards_radeon,llvm]
+# required by virtual/opengl-7.0-r2::gentoo
+# required by x11-misc/picom-8.2-r2::gentoo[opengl]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/elfutils-0.184 abi_x86_32
+# required by gnome-base/librsvg-2.50.6::gentoo
+# required by x11-libs/gtk+-2.24.33::gentoo
+# required by media-libs/libcanberra-0.30-r5::gentoo[gtk]
+# required by media-sound/pavucontrol-4.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=virtual/rust-1.52.1 abi_x86_32
+# required by virtual/rust-1.52.1::gentoo
+# required by gnome-base/librsvg-2.50.6::gentoo
+# required by x11-libs/gtk+-2.24.33::gentoo
+# required by media-libs/libcanberra-0.30-r5::gentoo[gtk]
+# required by media-sound/pavucontrol-4.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-lang/rust-1.52.1 abi_x86_32
+# required by games-util/steam-launcher-1.0.0.70::steam-overlay[steamruntime]
+# required by steam-launcher (argument)
+>=virtual/opengl-7.0-r2 abi_x86_32
+# required by dev-libs/libxslt-1.1.34-r1::gentoo[crypt]
+# required by x11-libs/gtk+-3.24.29::gentoo
+# required by app-emulation/wine-staging-6.11::gentoo[themes]
+# required by wine-staging (argument)
+>=dev-libs/libgcrypt-1.8.7 abi_x86_32
+# required by app-emulation/wine-staging-6.11::gentoo[lcms]
+# required by wine-staging (argument)
+>=media-libs/lcms-2.12 abi_x86_32
+# required by app-emulation/wine-staging-6.11::gentoo[themes]
+# required by wine-staging (argument)
+>=x11-libs/gtk+-3.24.29 abi_x86_32
+# required by app-emulation/wine-staging-6.11::gentoo[unwind]
+# required by wine-staging (argument)
+>=sys-libs/libunwind-1.5.0-r1 abi_x86_32
+# required by app-emulation/wine-staging-6.11::gentoo[xml]
+# required by wine-staging (argument)
+>=dev-libs/libxslt-1.1.34-r1 abi_x86_32
+# required by x11-libs/gtk+-3.24.29::gentoo
+# required by app-emulation/wine-staging-6.11::gentoo[themes]
+# required by wine-staging (argument)
+>=media-libs/libepoxy-1.5.5 abi_x86_32
+# required by x11-libs/gtk+-3.24.29::gentoo[X]
+# required by app-emulation/wine-staging-6.11::gentoo[themes]
+# required by wine-staging (argument)
+>=app-accessibility/at-spi2-atk-2.38.0 abi_x86_32
+# required by app-accessibility/at-spi2-atk-2.38.0::gentoo
+# required by x11-libs/gtk+-3.24.29::gentoo[X]
+# required by app-emulation/wine-staging-6.11::gentoo[themes]
+# required by wine-staging (argument)
+>=app-accessibility/at-spi2-core-2.40.1 abi_x86_32
+# required by dev-libs/libgcrypt-1.8.7::gentoo
+# required by dev-libs/libxslt-1.1.34-r1::gentoo[crypt]
+# required by x11-libs/gtk+-3.24.29::gentoo
+# required by app-emulation/wine-staging-6.11::gentoo[themes]
+# required by wine-staging (argument)
+>=dev-libs/libgpg-error-1.42 abi_x86_32
+# required by app-emulation/faudio-21.01::gentoo
+# required by app-emulation/wine-staging-6.11::gentoo[faudio]
+# required by wine-staging (argument)
+>=media-libs/libsdl2-2.0.14-r1 abi_x86_32
+# required by media-libs/libsdl2-2.0.14-r1::gentoo[opengl]
+# required by app-emulation/faudio-21.01::gentoo
+# required by app-emulation/wine-staging-6.11::gentoo[faudio]
+# required by wine-staging (argument)
+>=virtual/glu-9.0-r2 abi_x86_32
+# required by virtual/glu-9.0-r2::gentoo
+# required by app-emulation/wine-staging-6.11::gentoo[opengl]
+# required by wine-staging (argument)
+>=media-libs/glu-9.0.1 abi_x86_32
+# required by app-emulation/wine-staging-6.11::gentoo[jpeg]
+# required by wine-staging (argument)
+>=virtual/jpeg-100 abi_x86_32
+# required by virtual/jpeg-100::gentoo
+# required by app-emulation/wine-staging-6.11::gentoo[jpeg]
+# required by wine-staging (argument)
+>=media-libs/libjpeg-turbo-2.1.0-r2 abi_x86_32
+# required by media-gfx/gimp-2.10.22-r2::gentoo
+# required by gimp (argument)
+>=app-text/poppler-21.05.0 cairo
+# required by media-gfx/gimp-2.10.22-r2::gentoo
+# required by gimp (argument)
+>=media-libs/gegl-0.4.26-r1 cairo
+# required by www-client/ungoogled-chromium-91.0.4472.114-r1::pf4public[system-harfbuzz]
+# required by ungoogled-chromium (argument)
+>=media-libs/harfbuzz-2.8.1 icu
+# required by www-client/ungoogled-chromium-91.0.4472.114-r1::pf4public
+# required by ungoogled-chromium (argument)
+>=net-libs/nodejs-14.16.1 inspector
+# required by media-sound/picard-2.6.2::gentoo[python_single_target_python3_9]
+# required by media-sound/picard (argument)
+>=dev-python/PyQt5-5.15.4-r1 declarative
+# required by dev-games/aseprite-1.1.6::gentoo
+# required by aseprite (argument)
+>=media-libs/allegro-4.4.3.1:0 png
+# required by dev-libs/wayland-1.19.0::gentoo
+# required by net-misc/remmina-1.4.18::gentoo
+# required by remmina (argument)
+>=dev-util/wayland-scanner-1.19.0 abi_x86_32
+# required by x11-libs/pango-1.48.7::gentoo
+# required by www-client/ungoogled-chromium-91.0.4472.164-r1::pf4public
+# required by @selected
+# required by @world (argument)
+>=media-libs/freetype-2.10.4 harfbuzz
+# required by app-portage/pfl-3.1-r1::gentoo[network-cron]
+# required by app-portage/pfl (argument)
+>=sys-apps/util-linux-2.36.2-r1 caps
+# required by app-office/libreoffice-7.1.3.2::gentoo
+# required by libreoffice (argument)
+>=dev-libs/xmlsec-1.2.32 nss
+# required by app-editors/emacs-27.2-r3::gentoo
+# required by emacs (argument)
+>=app-emacs/emacs-common-1.8 gui
+# required by x11-base/xorg-server-1.20.13-r1::gentoo[elogind]
+# required by @selected
+# required by @world (argument)
+>=sys-auth/elogind-246.10-r1 pam
+# required by media-video/obs-studio-27.0.1::gentoo
+# required by obs-studio (argument)
+>=media-video/ffmpeg-4.4-r1 x264
+# required by sci-electronics/kicad-packages3d-5.1.10::gentoo
+# required by kicad-packages3d (argument)
+>=sci-electronics/kicad-5.1.10-r1 oce -occ
+# required by sci-electronics/kicad-5.1.10-r1::gentoo
+# required by sci-electronics/kicad-symbols-5.1.10::gentoo
+# required by kicad-symbols (argument)
+>=dev-libs/boost-1.76.0-r1 context
+# required by sci-electronics/kicad-5.1.10-r1::gentoo
+# required by sci-electronics/kicad-symbols-5.1.10::gentoo
+# required by kicad-symbols (argument)
+>=x11-libs/wxGTK-3.0.4-r302:3.0-gtk3 opengl
+# required by media-gfx/nvidia-cg-toolkit-3.1.0013-r5::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXmu-1.1.3 abi_x86_32
+# required by media-gfx/nvidia-cg-toolkit-3.1.0013-r5::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXt-1.2.1 abi_x86_32
+# required by media-gfx/nvidia-cg-toolkit-3.1.0013-r5::gentoo[abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=media-libs/freeglut-3.2.1-r1 abi_x86_32
+# required by media-libs/mesa-21.1.7::gentoo[gallium,lm-sensors]
+# required by mesa (argument)
+>=sys-apps/lm-sensors-3.6.0 abi_x86_32
+# required by media-libs/mesa-21.1.7::gentoo[gallium,vaapi]
+# required by mesa (argument)
+>=x11-libs/libva-2.12.0 abi_x86_32
+# required by dev-util/android-sdk-update-manager-24.4.1-r2::gentoo
+# required by dev-util/android-sdk-update-manager (argument)
+>=dev-java/swt-4.10-r2 cairo
+# required by dev-util/android-sdk-update-manager-24.4.1-r2::gentoo
+# required by dev-util/android-sdk-update-manager (argument)
+>=sys-libs/ncurses-compat-6.2 abi_x86_32
+# required by net-print/cups-2.3.3_p2-r2::gentoo[zeroconf]
+# required by cups (argument)
+>=net-dns/avahi-0.8-r4 abi_x86_32
+# required by net-dns/avahi-0.8-r4::gentoo
+# required by net-print/cups-2.3.3_p2-r2::gentoo[zeroconf]
+# required by cups (argument)
+>=dev-libs/libevent-2.1.11 abi_x86_32
+# required by media-sound/pulseaudio-15.0-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/speexdsp-1.2.0 abi_x86_32
+# required by dev-util/android-sdk-update-manager-24.4.1-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-java/swt-3.7.2-r3:3.7 cairo
+# required by sys-fs/udev-249.6-r2::gentoo
+# required by virtual/udev-217-r3::gentoo
+# required by dev-libs/libinput-1.18.0::gentoo
+# required by dev-qt/qtgui-5.15.2-r13::gentoo
+# required by @selected
+# required by @world (argument)
+>=virtual/libcrypt-2 abi_x86_32
+# required by virtual/libcrypt-2::gentoo
+# required by sys-fs/udev-249.6-r2::gentoo
+# required by virtual/udev-217-r3::gentoo
+# required by dev-libs/libinput-1.18.0::gentoo
+# required by dev-qt/qtgui-5.15.2-r13::gentoo
+# required by @selected
+# required by @world (argument)
+>=sys-libs/libxcrypt-4.4.25-r1 abi_x86_32
+# required by media-libs/mesa-21.2.6::gentoo[vulkan-overlay]
+# required by @selected
+# required by @world (argument)
+>=dev-util/glslang-11.6.0 abi_x86_32
