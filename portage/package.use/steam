@@ -382,3 +382,13 @@ sys-fs/eudev abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=dev-util/glslang-11.6.0 abi_x86_32
+# required by kde-frameworks/kcoreaddons-5.88.0-r1::gentoo
+# required by kde-frameworks/kcrash-5.88.0::gentoo
+# required by kde-plasma/polkit-kde-agent-5.23.4::gentoo
+# required by kde-frameworks/kauth-5.88.0::gentoo[policykit]
+# required by kde-frameworks/kconfigwidgets-5.88.0-r1::gentoo
+# required by kde-frameworks/kiconthemes-5.88.0-r1::gentoo
+# required by kde-frameworks/kxmlgui-5.88.0::gentoo
+# required by media-gfx/krita-4.4.8-r1::gentoo
+# required by krita (argument)
+>=dev-qt/qtcore-5.15.2-r11 icu
