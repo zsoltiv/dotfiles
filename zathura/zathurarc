@@ -1,6 +1,6 @@
-set default-bg "#05141B"
-set inputbar-bg "#05141B"
-set inputbar-fg "#B46484"
-set statusbar-bg "#05141B"
+set default-bg "#282828"
+set inputbar-bg "#ebdbb2"
+set inputbar-fg "#8ec07c"
+set statusbar-bg "#282828"
 set statusbar-fg "#B46484"
 

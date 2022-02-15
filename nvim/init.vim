@@ -45,6 +45,9 @@ Plug 'tibabit/vim-templates'
 
 call plug#end()
 
+" look for templates config dir
+let g:tmpl_search_paths = ['~/.config/nvim/templates']
+
 " enable filetype plugins
 filetype plugin on
 

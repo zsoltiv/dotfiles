@@ -1,17 +1,33 @@
-exec dwm &
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 redshift -P -O 3500 &
-picom -b &
+picom -cb &
 dunst &
 
-export GTK_IM_MODULE=xim
+# use zsh in terminal emulators
+export SHELL=/bin/zsh
+urxvtd --quiet --opendisplay --fork
+
 export XMODIFIERS=@im=ibus
+export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
-ibus-daemon -x &
+ibus-daemon -drx
 
-feh --bg-scale ~/background.jpg &
+~/projects/scripts/random-wp &
 
-# Statusbar loop
-while true; do
-   xsetroot -name "  $(/home/zsolti/projects/scripts/current-song.sh) 案: $(setxkbmap -query | awk '/layout/{print $2}') ボリューム: $(pulsemixer --get-volume | awk '{print $1}')% 時間: $(date '+%Y %b %d %a %H:%M:%S')  "
-   sleep 1s
-done
+~/projects/scripts/status &
+
+# pipewire
+if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+       eval `dbus-launch --sh-syntax --exit-with-session`
+fi
+unset XDG_RUNTIME_DIR
+export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
+/usr/bin/pipewire &
+
+# start mpd if it isn't already started
+[ ! -s ~/.config/mpd/pid ] && mpd
+
+# emacs --daemon &
+
+# restart dwm if you quit
+while type dwm >/dev/null ; do dwm && continue || break ; done

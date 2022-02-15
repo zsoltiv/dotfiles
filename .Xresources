@@ -1,10 +1,10 @@
 Xcursor.theme: Sweet-cursors
 
-URxvt.font: xft:undefined medium:size=7,xft:Mono:size=7
+URxvt.font: xft:undefined medium:size=8,xft:JackeyFont:pixelsize=16
 URxvt.scrollBar: false
 URxvt.letterSpace: 2
 URxvt.cursorBlink: true
-URxvt.internalBorder: 0
+URxvt.internalBorder: 24
 URxvt.externalBorder: 0
 URxvt.borderLess: false
 URxvt.pointerBlank: true
@@ -16,23 +16,70 @@ URxvt.perl-ext-common: default,matcher,selection-to-clipboard
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
-URxvt.background: #282828
-URxvt.foreground: #ebdbb2
+URxvt.depth: 32
+!
+! Dracula Xresources palette
+!URxvt.foreground: #F8F8F2
+!URxvt.background: [90]#282a36
+!URxvt.color0:     #282A36
+!URxvt.color8:     #4D4D4D
+!URxvt.color1:     #FF5555
+!URxvt.color9:     #FF6E67
+!URxvt.color2:     #50FA7B
+!URxvt.color10:    #5AF78E
+!URxvt.color3:     #F1FA8C
+!URxvt.color11:    #F4F99D
+!URxvt.color4:     #BD93F9
+!URxvt.color12:    #CAA9FA
+!URxvt.color5:     #FF79C6
+!URxvt.color13:    #FF92D0
+!URxvt.color6:     #8BE9FD
+!URxvt.color14:    #9AEDFE
+!URxvt.color7:     #BFBFBF
+!URxvt.color15:    #E6E6E6
+
+! custom colorscheme
+!URxvt.color0:  #05141B
+!URxvt.color1:  #B39D65
+!URxvt.color2:  #B46484
+!URxvt.color3:  #CC6B8E
+!URxvt.color4:  #EA909F
+!URxvt.color5:  #D296B9
+!URxvt.color6:  #F0ABA8
+!URxvt.color7:  #EFE0D0
+!URxvt.color8:  #A79C91
+!URxvt.color9:  #B39D65
+!URxvt.color10: #B46484
+!URxvt.color11: #CC6B8E
+!URxvt.color12: #EA909F
+!URxvt.color13: #D296B9
+!URxvt.color14: #F0ABA8
+!URxvt.color15: #EFE0D0
+
+!URxvt.background: #282828
+!URxvt.foreground: #ebdbb2
 
 ! gruvbox
+URxvt.background: [98]#282828
+URxvt.foreground: #ebdbb2
 URxvt.color0:  #282828
+URxvt.color8:  #928374
 URxvt.color1:  #cc241d
+URxvt.color9:  #fb4934
 URxvt.color2:  #98971a
+URxvt.color10: #b8bb26
 URxvt.color3:  #d79921
+URxvt.color11: #fabd2f
 URxvt.color4:  #458588
+URxvt.color12: #83a598
 URxvt.color5:  #b16286
+URxvt.color13: #d3869b
 URxvt.color6:  #689d6a
+URxvt.color14: #8ec07c
 URxvt.color7:  #a89984
-URxvt.color8:  #282828
-URxvt.color9:  #cc241d
-URxvt.color10: #98971a
-URxvt.color11: #d79921
-URxvt.color12: #458588
-URxvt.color13: #b16286
-URxvt.color14: #689d6a
-URxvt.color15: #a89984
+URxvt.color15: #ebdbb2
+
+## sxiv
+Sxiv.background: #282828
+Sxiv.foreground: #ebdbb2
+Sxiv.font: xft:undefined medium

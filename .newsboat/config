@@ -1,20 +1,15 @@
-auto-reload yes
-reload-time 10
-reload-threads 10
-browser "chromium %u"
-
-# unbind keys
-unbind-key ENTER
+# up/down
 unbind-key j
 unbind-key k
-unbind-key J
-unbind-key K
-
-# bind keys - vim style
 bind-key j down
 bind-key k up
-bind-key l open
-bind-key h quit
 
-# open in mpv
-macro w set browser "mpv --ytdl-format='bestvideo[height<=?1080]+bestaudio/best' %u" ; open-in-browser ; set browser "chromium %u"
+# move in/out of feeds, articles
+bind-key h quit
+bind-key l open
+
+# go to top/bottom
+unbind-key g
+unbind-key G
+bind-key g home
+bind-key G end

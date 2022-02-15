@@ -392,3 +392,11 @@ sys-fs/eudev abi_x86_32
 # required by media-gfx/krita-4.4.8-r1::gentoo
 # required by krita (argument)
 >=dev-qt/qtcore-5.15.2-r11 icu
+# required by net-proxy/mitmproxy-7.0.4::gentoo
+# required by mitmproxy (argument)
+>=app-arch/brotli-1.0.9-r3 python
+# required by media-libs/mesa-21.3.5::gentoo[vulkan-overlay]
+# required by app-emulation/qemu-6.2.0::gentoo[-static,opengl]
+# required by @selected
+# required by @world (argument)
+=dev-util/glslang-1.2.198 abi_x86_32

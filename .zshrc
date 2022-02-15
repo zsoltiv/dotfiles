@@ -34,7 +34,7 @@ export NNN_SHOW_HIDDEN=1
 export PATH="${PATH}:${HOME}/.local/bin/:$HOME:$HOME/projects/scripts/"
 # ibus
 export XMODIFIERS=@im=ibus
-export GTK_IM_MODULE=xim
+export GTK_IM_MODULExim
 export QT_IM_MODULE=xim
 
 # npm

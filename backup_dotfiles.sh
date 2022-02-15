@@ -2,12 +2,14 @@
 
 CONFIG_HOME="$HOME/.config"
 CONFIG_PATHS=(
+    "$HOME"
     "$HOME/.config"
     "/etc"
 )
 DOTFILES_DIR="$(pwd)"
 
-paths=$(find . -not -path '\./.*' -not -path '\.' -not -executable -type f | sed "s/^\.\///")
+#paths=$(find . -not -path '\./.*' -not -path '\.' -not -executable -type f | sed "s/^\.\///")
+paths=$(find . -not -path '\.' -not -executable -type f | sed "s/^\.\///")
 valid_config_paths=()
 for config_path in ${CONFIG_PATHS[@]}; do
     if [[ -d $config_path ]]; then
