@@ -1,0 +1,20 @@
+CC = cc
+CFLAGS = -g
+CXXFLAGS = $(CFLAGS)
+LDFLAGS = 
+BIN = 
+
+SRCDIR = src
+BUILDDIR = build
+
+SRC = $(wildcard $(SRCDIR)/*.c)
+OBJ = $(patsubst $(SRCDIR)/%.c,$(BUILDDIR)/%.o,$(SRC))
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $^ $(CFLAGS) $(LDFLAGS) -o $@
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c
+	mkdir -p $(BUILDDIR)
+	$(CC) $< -c $(CFLAGS) -o $@
