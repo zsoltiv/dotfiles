@@ -1,6 +1,6 @@
 Xcursor.theme: Sweet-cursors
 
-URxvt.font: xft:undefined medium:size=8,xft:JackeyFont:pixelsize=16
+URxvt.font: xft:undefined medium:size=8,xft:JackeyFont:pixelsize=8
 URxvt.scrollBar: false
 URxvt.letterSpace: 2
 URxvt.cursorBlink: true

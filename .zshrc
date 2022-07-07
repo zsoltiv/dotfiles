@@ -41,6 +41,9 @@ export QT_IM_MODULE=xim
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+# dwm isn't a reparenting WM
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 
 #export MANPAGER="nvim -c 'set ft=man' -"
 # aliases
@@ -52,6 +55,7 @@ alias sync="doas emerge --sync"
 alias update="doas emerge -avNUD --with-bdeps=y --keep-going @world"
 alias USE="doas nvim /etc/portage/package.use/neovim"
 alias MASK="doas nvim /etc/portage/package.accept_keywords"
+alias nas="doas mount -t cifs -o username=zsolti,uid=$(id -u),gid=$(id -g) //neuromancer.corp/neuromancer /mnt/smb"
 # functions
 mem()
 {                                                                                                      
