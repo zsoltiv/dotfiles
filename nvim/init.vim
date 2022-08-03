@@ -81,6 +81,12 @@ let g:netrw_banner = 0 " hide banner
 let g:netrw_browse_split = 3 " open files in new tab
 let g:netrw_winsize = 20 " occupy 20% of the screen
 
+" move between splits
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
 let g:startify_custom_header = [
 \ '       _                 _       _             _ _       ',
 \ '__   _(_)___ _   _  __ _| |  ___| |_ _   _  __| (_) ___  ',

@@ -21,7 +21,8 @@ if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
 fi
 unset XDG_RUNTIME_DIR
 export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
-/usr/bin/pipewire &
+#/usr/bin/pipewire &
+/usr/bin/gentoo-pipewire-launcher &
 
 ~/projects/scripts/random-wp &
 ~/projects/scripts/status &

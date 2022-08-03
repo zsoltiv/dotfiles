@@ -506,3 +506,11 @@ sys-fs/eudev abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=media-sound/mpg123-1.29.3 abi_x86_32
+# required by app-text/tesseract-4.1.1::gentoo
+# required by app-text/zathura-pdf-mupdf-0.3.8-r1::gentoo
+# required by @__auto_slot_operator_replace_installed__ (argument)
+>=media-libs/leptonica-1.80.0 webp jpeg png
+# required by media-sound/pulseaudio-16.0::gentoo
+# required by media-plugins/alsa-plugins-1.2.6::gentoo[pulseaudio]
+# required by media-sound/pulseaudio-daemon-16.0-r1::gentoo[alsa-plugin,alsa]
+>=media-libs/libpulse-16.0 abi_x86_32
